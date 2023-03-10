@@ -18,7 +18,8 @@ function salvarItem() {
         alert("Item já existe")
     } else {
         listaDeItens.push({
-            valor: comprasItem
+            valor: comprasItem,
+            checar: false
         })
     }
 
@@ -41,5 +42,15 @@ function mostrarItem() {
                 </div>
             </li>
         `
+    })
+
+    const inputsCheck = document.querySelectorAll('input[type=checkbox]');
+
+    inputsCheck.forEach(i => {
+        i.addEventListener('click', (evento) => {
+            const valorDoElemento = evento.target.parentElement.parentElement.getAttribute('data-value');
+            listaDeItens[valorDoElemento].checar = evento.target.checked;
+            console.log(listaDeItens[valorDoElemento].checar)
+        })
     })
 }
